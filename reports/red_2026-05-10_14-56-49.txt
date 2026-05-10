@@ -1,0 +1,50 @@
+================================================
+  REPORTE DE DIAGNÓSTICO DE RED — 2026-05-10_14-56-49
+================================================
+
+--- 1. INTERFACES DE RED ---
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    inet 127.0.0.1/8 scope host lo
+2: ens18: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    inet 192.168.0.56/24 metric 100 brd 192.168.0.255 scope global dynamic ens18
+
+--- 2. TABLA DE RUTAS ---
+default via 192.168.0.1 dev ens18 proto dhcp src 192.168.0.56 metric 100 
+190.55.154.133 via 192.168.0.1 dev ens18 proto dhcp src 192.168.0.56 metric 100 
+192.168.0.0/24 dev ens18 proto kernel scope link src 192.168.0.56 metric 100 
+192.168.0.1 dev ens18 proto dhcp scope link src 192.168.0.56 metric 100 
+200.115.192.29 via 192.168.0.1 dev ens18 proto dhcp src 192.168.0.56 metric 100 
+200.115.192.89 via 192.168.0.1 dev ens18 proto dhcp src 192.168.0.56 metric 100 
+
+--- 3. CONFIGURACIÓN DNS ---
+
+nameserver 127.0.0.53
+options edns0 trust-ad
+search home
+
+--- 4. CONECTIVIDAD (PING) ---
+  [OK]   google.com — alcanzable (latencia avg: 13.164ms)
+  [OK]   8.8.8.8 — alcanzable (latencia avg: 11.547ms)
+  [OK]   github.com — alcanzable (latencia avg: 43.358ms)
+
+--- 5. RESOLUCIÓN DNS ---
+  [OK]   google.com → 142.251.128.142
+  [OK]   8.8.8.8 — es una IP, no requiere DNS
+  [OK]   github.com → 4.228.31.150
+
+--- 6. SERVICIOS HTTP ---
+  [OK]   https://google.com → HTTP 301
+  [OK]   https://github.com → HTTP 200
+
+--- 7. PUERTOS LOCALES EN ESCUCHA ---
+LISTEN 0      4096         0.0.0.0:22        0.0.0.0:*          
+LISTEN 0      4096      127.0.0.54:53        0.0.0.0:*          
+LISTEN 0      4096   127.0.0.53%lo:53        0.0.0.0:*          
+LISTEN 0      4096            [::]:22           [::]:*          
+
+------------------------------------------------
+RESUMEN: 8 OK  |  0
+0 WARN  |  0
+0 FAIL
+Reporte guardado en: /home/christian/devops-TP04/reports/red_2026-05-10_14-56-49.txt
+------------------------------------------------
